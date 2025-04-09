@@ -1,4 +1,4 @@
-void MainLight_float(float3 WorldPos, out float3 Direction, out float3 Color,
+void MainLight_float(float3 WorldPos, out float3 Direction, out float3 Color, 
 	out float DistanceAtten, out float ShadowAtten)
 {
 #ifdef SHADERGRAPH_PREVIEW
@@ -17,7 +17,7 @@ void MainLight_float(float3 WorldPos, out float3 Direction, out float3 Color,
 #endif
 }
 
-void MainLight_half(half3 WorldPos, out half3 Direction, out half3 Color,
+void MainLight_half(half3 WorldPos, out half3 Direction, out half3 Color, 
 	out half DistanceAtten, out half ShadowAtten)
 {
 #ifdef SHADERGRAPH_PREVIEW
@@ -36,7 +36,7 @@ void MainLight_half(half3 WorldPos, out half3 Direction, out half3 Color,
 #endif
 }
 
-void AdditionalLight_float(float3 WorldPos, int Index, out float3 Direction,
+void AdditionalLight_float(float3 WorldPos, int Index, out float3 Direction, 
 	out float3 Color, out float DistanceAtten, out float ShadowAtten)
 {
     Direction = normalize(float3(0.5f, 0.5f, 0.25f));
@@ -46,7 +46,7 @@ void AdditionalLight_float(float3 WorldPos, int Index, out float3 Direction,
 
 #ifndef SHADERGRAPH_PREVIEW
     int pixelLightCount = GetAdditionalLightsCount();
-    if (Index < pixelLightCount)
+    if(Index < pixelLightCount)
     {
         Light light = GetAdditionalLight(Index, WorldPos);
     
@@ -61,21 +61,21 @@ void AdditionalLight_float(float3 WorldPos, int Index, out float3 Direction,
 void AdditionalLight_half(half3 WorldPos, int Index, out half3 Direction,
 	out half3 Color, out half DistanceAtten, out half ShadowAtten)
 {
-    Direction = normalize(half3(0.5f, 0.5f, 0.25f));
-    Color = half3(0.0f, 0.0f, 0.0f);
-    DistanceAtten = 0.0f;
-    ShadowAtten = 0.0f;
+	Direction = normalize(half3(0.5f, 0.5f, 0.25f));
+	Color = half3(0.0f, 0.0f, 0.0f);
+	DistanceAtten = 0.0f;
+	ShadowAtten = 0.0f;
 
 #ifndef SHADERGRAPH_PREVIEW
-    int pixelLightCount = GetAdditionalLightsCount();
-    if (Index < pixelLightCount)
-    {
-        Light light = GetAdditionalLight(Index, WorldPos);
+	int pixelLightCount = GetAdditionalLightsCount();
+	if (Index < pixelLightCount)
+	{
+		Light light = GetAdditionalLight(Index, WorldPos);
 
-        Direction = light.direction;
-        Color = light.color;
-        DistanceAtten = light.distanceAttenuation;
-        ShadowAtten = light.shadowAttenuation;
-    }
+		Direction = light.direction;
+		Color = light.color;
+		DistanceAtten = light.distanceAttenuation;
+		ShadowAtten = light.shadowAttenuation;
+	}
 #endif
 }
