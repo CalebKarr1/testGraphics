@@ -116,7 +116,7 @@ Material:
     - _GlossyReflections: 0
     - _LightingCutoff: 0.59
     - _Metallic: 0
-    - _Normal_strength: 32.82
+    - _Normal_strength: 4.3
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
